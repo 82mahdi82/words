@@ -32,7 +32,6 @@ bot = telebot.TeleBot(TOKEN,num_threads=3)
 bot.set_update_listener(listener)
 
 def send_long_message(chat_id, text, chunk_size=4000):
-    # تقسیم متن به قسمت‌های کوچکتر
     for i in range(0, len(text), chunk_size):
         bot.send_message(chat_id, text[i:i + chunk_size])
 
@@ -66,8 +65,9 @@ def all_msg(m):
                 for r in result:
                     f.write(r + '\n')
                     text_res += r + '\n'
+                    bot.send_message(cid,text_res)
 
-            send_long_message(cid, text_res)
+            # send_long_message(cid, text_res)
             with open(f'{cid}.txt', 'rb') as file:
                 bot.send_document(cid, file)
             os.remove(f'{cid}.txt')
