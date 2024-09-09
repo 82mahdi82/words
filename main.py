@@ -60,12 +60,10 @@ def all_msg(m):
     if len(text) < 20:
         if len(text) >= 3: 
             result = generate_words(text)
-            text_res = ''
             with open(f'{cid}.txt', 'w', encoding='utf-8') as f:
                 for r in result:
                     f.write(r + '\n')
-                    text_res += r + '\n'
-                    bot.send_message(cid,text_res)
+                    bot.send_message(cid,r)
 
             # send_long_message(cid, text_res)
             with open(f'{cid}.txt', 'rb') as file:
